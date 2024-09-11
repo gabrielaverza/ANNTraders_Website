@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Infos</title>
+</head>
+<body>
+    <h1>Produto Infos</h1>
+    {% if product %}
+        <p><strong>Name:</strong> {{ product.name }}</p>
+        <p><strong>Quantity:</strong> {{ product.qty }}</p>
+    {% else %}
+        <p>No product found.</p>
+    {% endif %}
+    <a href="{% url 'search_product' %}">Back to search</a>
+</body>
+</html>
