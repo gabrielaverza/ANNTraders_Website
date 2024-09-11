@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Product</title>
+    <title>Register</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +13,6 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            text-align: center;
         }
 
         .container {
@@ -24,11 +22,11 @@
             padding: 20px;
             width: 100%;
             max-width: 400px; 
+            text-align: center;
         }
 
-        h1 {
+        h2 {
             color: #333; 
-            margin-bottom: 20px;
         }
 
         form {
@@ -48,34 +46,26 @@
         }
 
         button {
-            background-color: #007bff;
+            background-color: #007bff; 
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin-top: 20px;
             cursor: pointer;
             font-size: 16px;
-            border-radius: 5px;
         }
 
         button:hover {
             background-color: #0056b3; 
         }
-
-        a {
-            text-decoration: none;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Search Product</h1>
-        <form method="post" action="{% url 'search_product' %}">
+        <h2>Create Account</h2>
+        <form method="post">
             {% csrf_token %}
-            <input type="text" name="product_name" placeholder="Enter product name" value="{{ request.POST.product_name }}">
-            <button type="submit">Search</button>
+            {{ form.as_p }}
+            <button type="submit">Register</button>
         </form>
-        <a href="{% url 'initial' %}"><button>Back</button></a>
     </div>
 </body>
 </html>

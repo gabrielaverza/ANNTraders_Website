@@ -4,15 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Infos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            width: 100%;
+            max-width: 400px; 
+        }
+
+        h1 {
+            color: #333; 
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; 
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd; 
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left; 
+        }
+
+        th {
+            background-color: #f4f4f4; 
+            color: #333;
+        }
+
+        th, td {
+            width: 50%;
+        }
+
+        tr {
+            height: 50px; 
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .error {
+            background-color: #edd4d4; 
+            color: #bb3838; 
+            border: 1px solid #e6c3c3; 
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Produto Infos</h1>
-    {% if product %}
-        <p><strong>Name:</strong> {{ product.name }}</p>
-        <p><strong>Quantity:</strong> {{ product.qty }}</p>
-    {% else %}
-        <p>No product found.</p>
-    {% endif %}
-    <a href="{% url 'search_product' %}">Back to search</a>
+    <div class="container">
+        <h1>Produto Infos</h1>
+        {% if product %}
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.qty }}</td>
+                </tr>
+            </table>
+        {% else %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+        <a href="{% url 'search_product' %}"><button>Back</button></a>
+    </div>
 </body>
 </html>

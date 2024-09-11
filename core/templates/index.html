@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ANN Traders Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #333; 
+        }
+
+        .navbar {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .navbar button {
+            background-color: #007bff; 
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .navbar button:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ANN Traders Website</h1>
+        <div class="navbar">
+            <a href="{% url 'login' %}"><button>Login</button></a>
+            <a href="{% url 'register' %}"><button>Register</button></a>
+        </div>
+    </div>
+</body>
+</html>

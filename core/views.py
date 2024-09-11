@@ -1,21 +1,27 @@
 from django.shortcuts import render, redirect
 from .models import Product
 from .forms import ProductForm
+from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
+
+def index(request):
+    return render(request, 'index.html')
+
+def initial(request):
+    return render(request, 'initial.html')
 
 def search_product(request):
     if request.method == 'POST':
         product_name = request.POST.get('product_name', '').strip()
-        # print(f"Received product_name in search_product: '{product_name}'")
 
         if product_name:
             product = Product.objects.filter(name__icontains=product_name).first()
-            # print(f"Found product in search_product: {product}")
 
             if product:
                 return render(request, 'product_exists.html', {'product': product})
             else:
-                form = ProductForm(initial={'name': product_name})
-                return redirect('add_product')
+                return render(request, 'product_exists.html', {'error': 'No product found.'})
         else: 
             return render(request, 'search_product.html', {'error': 'Please, use a valid product name.'})
     
@@ -24,23 +30,36 @@ def search_product(request):
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
-        # print(f"Form data in add_product: {request.POST}")
 
         if form.is_valid():
             product_name = form.cleaned_data['name']
             product_exists = Product.objects.filter(name__iexact=product_name).first()
-            # print(f"Product exists in add_product: {product_exists}")
 
             if product_exists:
                 product_exists.qty += form.cleaned_data['qty']
                 product_exists.save()
-                return redirect('search_product')
+                return render(request, 'add_product.html', {'message': 'Product updated.'})
             else:
                 form.save()
-                return redirect('search_product')
+                return render(request, 'add_product.html', {'message': 'Product included.'})
         else:
             print(f"Form errors in add_product: {form.errors}")
     else:
         form = ProductForm()
 
     return render(request, 'add_product.html', {'form': form})
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})
+
+def custom_logout(request):
+    logout(request)
+    return redirect('/')
