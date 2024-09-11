@@ -4,14 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            width: 100%;
+            max-width: 400px; 
+        }
+
+        h1 {
+            color: #333; 
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form input,
+        form button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Search Product</h1>
-    <form method="post" action="{% url 'search_product' %}">
-        {% csrf_token %}
-        <input type="text" name="product_name" placeholder="Enter product name" value="{{ request.POST.product_name }}">
-        <button type="submit">Search</button>
-    </form> 
-    <a href="{% url 'initial' %}"><button>Back</button></a>
+    <div class="container">
+        <h1>Search Product</h1>
+        <form method="post" action="{% url 'search_product' %}">
+            {% csrf_token %}
+            <input type="text" name="product_name" placeholder="Enter product name" value="{{ request.POST.product_name }}">
+            <button type="submit">Search</button>
+        </form>
+        <a href="{% url 'initial' %}"><button>Back</button></a>
+    </div>
 </body>
 </html>

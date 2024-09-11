@@ -4,18 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #ffffff; 
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            width: 100%;
+            max-width: 500px; 
+        }
+
+        h1 {
+            color: #333; 
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 20px 0;
+        }
+
+        form p {
+            text-align: left; 
+            margin: 10px 0;
+        }
+
+        form input,
+        form button {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3; 
+        }
+
+        a {
+            text-decoration: none; 
+        }
+
+        .message {
+            background-color: #d4edda; 
+            color: #155724; 
+            border: 1px solid #c3e6cb; 
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add Product</h1>
-    {% if message %}
-        <p>{{ message }}</p>
-    {% else %}
-        <form action="{% url 'add_product' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Save Product</button>
-        </form>
-    {% endif %}
-    <a href="{% url 'initial' %}"><button>Back</button></a>
+    <div class="container">
+        <h1>Add Product</h1>
+        {% if message %}
+            <div class="message">{{ message }}</div>
+        {% else %}
+            <form action="{% url 'add_product' %}" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Save Product</button>
+            </form>
+        {% endif %}
+        <a href="{% url 'initial' %}"><button>Back</button></a>
+    </div>
 </body>
 </html>
