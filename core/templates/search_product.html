@@ -11,10 +11,7 @@
         {% csrf_token %}
         <input type="text" name="product_name" placeholder="Enter product name" value="{{ request.POST.product_name }}">
         <button type="submit">Search</button>
-    </form>
-
-    {% if error %}
-        <p>{{ error }}</p>
-    {% endif %}
+    </form> 
+    <a href="{% url 'initial' %}"><button>Back</button></a>
 </body>
 </html>

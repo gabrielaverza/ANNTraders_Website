@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Initial Page</title>
+    <style>
+        body {
+            text-align: center;
+            margin-top: 20%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to ANN Traders</h1>
+    <a href="{% url 'search_product' %}"><button>Search</button></a>
+    <a href="{% url 'add_product' %}"><button>Add Product</button></a>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+</body>
+</html>
